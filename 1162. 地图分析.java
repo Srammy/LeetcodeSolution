@@ -1,3 +1,8 @@
+/**
+ * 对于这种对每个点都需要找距离的问题来说，使用多源BFS是最合适的。
+ * 参考资料：https://blog.csdn.net/ATFWUS/article/details/105184960
+ */
+//-----------------方法1-------------------
 class Solution {
     public int maxDistance(int[][] grid) {
         int N = grid.length; // 可以理解为二维数组的行数
@@ -13,7 +18,7 @@ class Solution {
             }
         }
 
-        // 全是陆地和海洋
+        // 全是陆地或全是海洋
         if(q.isEmpty() || q.size() == N * N) {
             return -1;
         }
@@ -30,22 +35,22 @@ class Solution {
 
                 // 左边的点
                 if(r - 1 >= 0 && grid[r - 1][c] == 0) {
-                    grid[r - 1][c] = 2;
+                    grid[r - 1][c] = 2; // 标记为已访问
                     q.offer(new int[]{r - 1, c});
                 }
                 // 右边的点
                 if(r + 1 < N && grid[r + 1][c] == 0) {
-                    grid[r + 1][c] = 2;
+                    grid[r + 1][c] = 2; // 标记为已访问
                     q.offer(new int[]{r + 1, c});
                 }
                 // 上方的点
                 if(c - 1 >= 0 && grid[r][c - 1] == 0) {
-                    grid[r][c - 1] = 2;
+                    grid[r][c - 1] = 2; // 标记为已访问
                     q.offer(new int[]{r, c - 1});
                 }
                 // 下方的点
                 if(c + 1 < N && grid[r][c + 1] == 0) {
-                    grid[r][c + 1] = 2;
+                    grid[r][c + 1] = 2; // 标记为已访问
                     q.offer(new int[]{r, c + 1});
                 }
             }

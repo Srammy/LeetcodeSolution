@@ -1,3 +1,5 @@
+//本题类似判断一棵树是否是另一颗树的子结构（注意，是子结构，不是子树）。
+//可以与剑指offer的JZ17->树的子结构一起分析
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -30,7 +32,7 @@ class Solution {
 
     // 从二叉树的任意一个节点开始，是否能和链表匹配
     public boolean isSub(ListNode head, TreeNode node) {
-        // 匹配到链表为空
+        // 匹配到链表为空，必须先判断链表为空，否则会报错
         if(head == null) {
             return true;
         }
@@ -39,7 +41,11 @@ class Solution {
         if(node == null) {
             return false;
         }
-
+		
+		//if(head == null) {
+        //    return true;
+        //}
+		
         // 值不同，匹配失败
         if(node.val != head.val) {
             return false;

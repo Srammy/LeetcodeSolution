@@ -1,10 +1,4 @@
-/*
- * @lc app=leetcode.cn id=1 lang=java
- *
- * [1] 两数之和
- */
-
-// @lc code=start
+//-----------------方法1--------------------
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         int[] res = new int[2];
@@ -20,5 +14,17 @@ class Solution {
         return res;
     }
 }
-// @lc code=end
+//-----------------方法2--------------------------
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> hashtable = new HashMap<Integer, Integer>();
+        for (int i = 0; i < nums.length; ++i) {
+            if (hashtable.containsKey(target - nums[i])) {
+                return new int[]{hashtable.get(target - nums[i]), i};
+            }
+            hashtable.put(nums[i], i);
+        }
+        return new int[0];
+    }
+}
 

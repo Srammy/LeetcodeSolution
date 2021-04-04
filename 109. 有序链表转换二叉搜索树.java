@@ -19,6 +19,7 @@
 class Solution {
     public TreeNode sortedListToBST(ListNode head) {
         if (head == null) return null;
+        if (head.next == null) return new TreeNode(head.val);  
         ListNode fast = head;
         ListNode slow = head;
         ListNode p = head;
@@ -39,11 +40,9 @@ class Solution {
         p.next = null;
 
         TreeNode root = new TreeNode(slow.val);
-        if (slow == fast) { // 只有一个节点（slow == fast）,此时左子树为null
-            root.left = null; 
-        } else {
-            root.left = sortedListToBST(head);
-        }  
+        
+        root.left = sortedListToBST(head);
+        
         root.right = sortedListToBST(slow.next); // 只有一个节点时，slow.next == null,直接返回null（代码第一行），root.right == null
         return root;
     }

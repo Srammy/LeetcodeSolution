@@ -52,3 +52,25 @@ class Solution {
 }
 
 //方法2链接：https://leetcode-cn.com/problems/validate-binary-search-tree/solution/zhong-xu-bian-li-qing-song-na-xia-bi-xu-miao-dong-/
+
+//----------------方法3:-----------------------------
+class Solution {
+    TreeNode pre = null;
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        
+		boolean left = isValidBST(root.left);
+		
+		if (pre != null && pre.val >= root.val) {
+			return false;
+		}
+		pre = root;
+		
+		boolean right = isValidBST(root.right);
+		
+		return left && right;
+		
+    }
+}

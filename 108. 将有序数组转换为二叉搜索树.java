@@ -26,3 +26,23 @@ class Solution {
         return root;
     }
 }
+
+//---------------简单的实现--------------
+class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+        return dfs(nums, 0, nums.length - 1);
+    }
+
+    private TreeNode dfs(int[] nums, int left, int right) {
+        if (left > right) {
+            return null;
+        } 
+        // 以升序数组的中间元素作为根节点 root。
+        int mid = left + (right - left) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        // 递归的构建 root 的左子树与右子树。
+        root.left = dfs(nums, left, mid - 1);
+        root.right = dfs(nums, mid + 1, right); 
+        return root;
+    }
+}
